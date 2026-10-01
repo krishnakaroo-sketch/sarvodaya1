@@ -1,0 +1,26 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Pass Authorization header to PHP (essential for Hostinger Apache/LiteSpeed)
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+  # Forward all /api/ requests to api.php?route=...
+  RewriteCond %{REQUEST_URI} ^/api/(.*)$ [NC]
+  RewriteRule ^api/(.*)$ api.php?route=$1 [QSA,L]
+
+  # React SPA Routing (if file/folder doesn't exist, serve index.html)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !^/api/
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>
+
+# Protect sensitive database backup files from direct web access
+<FilesMatch "(database\.sql|local\.json|\.env)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Ensure UTF-8 for Marathi language display
+AddDefaultCharset UTF-8

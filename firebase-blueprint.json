@@ -1,0 +1,109 @@
+{
+  "entities": {
+    "Announcement": {
+      "title": "Announcement",
+      "description": "School announcement",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 255 },
+        "content": { "type": "string", "maxLength": 5000 },
+        "date": { "type": "string", "maxLength": 50 },
+        "isNew": { "type": "boolean" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "content"]
+    },
+    "ContentBlock": {
+      "title": "ContentBlock",
+      "description": "Static site content",
+      "type": "object",
+      "properties": {
+        "content": { "type": "string", "maxLength": 20000 }
+      },
+      "required": ["content"]
+    },
+    "Event": {
+      "title": "Event",
+      "description": "School event",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "maxLength": 50 },
+        "month": { "type": "string", "maxLength": 50 },
+        "title": { "type": "string", "maxLength": 255 },
+        "location": { "type": "string", "maxLength": 255 },
+        "order": { "type": "number" }
+      },
+      "required": ["title"]
+    },
+    "Institution": {
+      "title": "Institution",
+      "description": "Affiliated institution",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 255 },
+        "type": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 5000 },
+        "imageUrl": { "type": "string", "maxLength": 1000 },
+        "link": { "type": "string", "maxLength": 255 },
+        "order": { "type": "number" }
+      },
+      "required": ["name"]
+    },
+    "Career": {
+      "title": "Career",
+      "description": "Job posting",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 255 },
+        "department": { "type": "string", "maxLength": 100 },
+        "location": { "type": "string", "maxLength": 100 },
+        "type": { "type": "string", "maxLength": 50 },
+        "description": { "type": "string", "maxLength": 5000 },
+        "requirements": { "type": "string", "maxLength": 5000 }
+      },
+      "required": ["title"]
+    },
+    "JobApplication": {
+      "title": "JobApplication",
+      "description": "Applicant submission",
+      "type": "object",
+      "properties": {
+        "careerId": { "type": "string", "maxLength": 128 },
+        "jobTitle": { "type": "string", "maxLength": 255 },
+        "name": { "type": "string", "maxLength": 200 },
+        "email": { "type": "string", "maxLength": 255 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "coverLetter": { "type": "string", "maxLength": 10000 },
+        "resumeUrl": { "type": "string", "maxLength": 1000 },
+        "resumeOriginalName": { "type": "string", "maxLength": 255 },
+        "status": { "type": "string", "maxLength": 50 },
+        "created_at": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["careerId"]
+    },
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "Contact form inquiry",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 200 },
+        "email": { "type": "string", "maxLength": 255 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "program": { "type": "string", "maxLength": 255 },
+        "message": { "type": "string", "maxLength": 5000 },
+        "status": { "type": "string", "maxLength": 50 },
+        "created_at": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["name", "email", "message"]
+    }
+  },
+  "firestore": {
+    "announcements": { "schema": { "$ref": "#/entities/Announcement" }, "description": "" },
+    "content_blocks": { "schema": { "$ref": "#/entities/ContentBlock" }, "description": "" },
+    "events": { "schema": { "$ref": "#/entities/Event" }, "description": "" },
+    "institutions": { "schema": { "$ref": "#/entities/Institution" }, "description": "" },
+    "careers": { "schema": { "$ref": "#/entities/Career" }, "description": "" },
+    "job_applications": { "schema": { "$ref": "#/entities/JobApplication" }, "description": "" },
+    "inquiries": { "schema": { "$ref": "#/entities/Inquiry" }, "description": "" }
+  }
+}
